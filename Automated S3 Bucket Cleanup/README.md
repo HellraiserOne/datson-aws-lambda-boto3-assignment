@@ -46,15 +46,7 @@ See [`iam_policy.json`](./iam_policy.json) for the exact policy used.
   which threw a TypeError since S3's LastModified is timezone-aware — fixed
   by using `datetime.now(timezone.utc)`."]
 
-## 7. Discussion Point: Lambda vs. S3 Lifecycle Rules
-S3 Lifecycle Rules handle simple age-based expiration natively with zero code
-and no compute cost. Lambda is a better fit when deletion logic depends on
-conditions Lifecycle Rules can't express — e.g., filtering by filename
-pattern/prefix combined with tags, cross-referencing another service before
-deleting, or triggering a downstream action (like a notification) alongside
-the deletion.
-
-## 8. Cleanup Performed
+## 7. Cleanup Performed
 - Deleted all test objects used to validate the 2-minute threshold
 - Confirmed no other resources (EC2, snapshots, Elastic IPs) were created for
   this task
